@@ -51,3 +51,20 @@ most fields unknown. New convention: for `state_incentives`, `federal_support`, 
 `site_secured`, a fact **not mentioned in the announcement coverage** found within the window is coded **no**.
 `unknown` is reserved for projects where no announcement-window coverage is found at all.
 A letter of intent for a building is coded as site **no** (not yet bought or leased).
+
+## Result (2026-10-01)
+Full output: `docs/cancellation-test-results-phase2.txt` (from `python3 scripts/phase2_test.py`).
+
+**FAIL.** Cross-validated AUC on the 120 projects: M0 metadata 0.629, M1 warning signs 0.444, M2 combined 0.575.
+M2 missed both thresholds (≥ 0.80; ≥ M0 + 0.05). The warning signs did not predict cancellation;
+adding them made the model worse.
+
+Descriptively, cancellation rates barely differ by any sign (e.g. site secured 49% vs not 64%, n=14;
+state incentives 57% with vs 48% without; established company 48% vs startup 53%).
+
+Interpretation: in this period, cancellations look driven by market and policy shifts that hit
+established companies as much as startups (Ford, GM, Stellantis, Siemens Gamesa and Meyer Burger all appear among the cancelled),
+not by project-level readiness visible at announcement.
+
+Limitations: coding was not blind (though a null result is unlikely to come from outcome-aware bias);
+120 projects with coarse yes/no signs; one sector and one unusual period (2025 policy shock).

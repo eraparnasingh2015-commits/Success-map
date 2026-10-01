@@ -1,0 +1,21 @@
+120 projects, 60 cancelled
+
+Cancellation rate by warning sign (descriptive):
+  site_secured: no 64% (n=14), unknown 33% (n=3), yes 49% (n=103)
+  state_incentives: no 48% (n=79), unknown 25% (n=4), yes 57% (n=37)
+  federal_support: no 50% (n=105), unknown 25% (n=4), yes 55% (n=11)
+  customer_named: no 53% (n=70), unknown 25% (n=4), yes 48% (n=46)
+  company_stage: established 48% (n=73), startup 53% (n=47)
+  foreign_parent_china: no 50% (n=114), yes 50% (n=6)
+
+Cross-validated AUC (5-fold x 10 repeats):
+  M0 metadata only         0.629  (sd 0.092)
+  M1 warning signs only    0.444  (sd 0.090)
+  M2 combined              0.575  (sd 0.096)
+
+PASS MARK: M2 AUC>=0.80 False (0.575); M2 beats M0 by >=0.05 False (-0.053) -> FAIL
+
+Exploratory (not part of the pass mark):
+  company_stage only           0.474  (sd 0.089)
+  signs without company_stage  0.469  (sd 0.080)
+  metadata without State       0.662  (sd 0.094)
