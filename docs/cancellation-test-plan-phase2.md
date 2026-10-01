@@ -44,3 +44,10 @@ Top-30% recall isn't used here: with a 50/50 sample its maximum is 60%, so the p
 ## Interpretation
 - **Pass:** hand-collected signs add real predictive value → worth checking buyers and how to collect these signs at scale.
 - **Fail:** cancellations in this data aren't predictable enough from announcement-time facts → stop this wedge.
+
+## Amendment 1 (2026-10-01, after coding 6 of 120 projects, before any analysis)
+Announcements rarely state that something is absent, so the strict "unknown unless stated" rule would leave
+most fields unknown. New convention: for `state_incentives`, `federal_support`, `customer_named` and
+`site_secured`, a fact **not mentioned in the announcement coverage** found within the window is coded **no**.
+`unknown` is reserved for projects where no announcement-window coverage is found at all.
+A letter of intent for a building is coded as site **no** (not yet bought or leased).
