@@ -1,0 +1,46 @@
+
+=== main sample: 5521 projects, 328 cancelled (5.9%) ===
+Cancellation rate by technology: Batteries 10.9%, Onshore Wind Turbine 4.5%, Solar Photovoltaic 5.0%
+Cancellation rate by year: 2018 6.9%, 2019 5.2%, 2020 5.0%, 2021 4.8%, 2022 6.8%, 2023 7.4%
+
+Cross-validated (5-fold x 10)
+  method              AUC  top-30% recall
+  boosted           0.798           76.6%
+  logistic          0.771           70.4%
+  B4 state          0.717           63.3%
+  B2 size           0.654           51.8%
+  B1 technology     0.568           95.0%
+  B3 vintage        0.526           42.3%
+
+Time check: train 2018-21, test 2022+ (1696 projects, 121 cancelled)
+  method              AUC  top-30% recall
+  B2 size           0.740           58.7%
+  logistic          0.683           58.7%
+  B1 technology     0.646           96.7%
+  B4 state          0.630           58.7%
+  boosted           0.619           54.5%
+  B3 vintage        0.500          100.0%
+
+PASS MARK (boosted): AUC>=0.70 True (0.798), beats best baseline by >=0.05 True (+0.081), top-30% recall>=70% True (76.6%) -> PASS
+
+=== sensitivity sample: 4730 projects, 404 cancelled (8.5%) ===
+Cancellation rate by technology: Batteries 12.2%, Onshore Wind Turbine 8.8%, Solar Photovoltaic 7.8%
+Cancellation rate by year: 2018 8.7%, 2019 6.5%, 2020 7.5%, 2021 8.9%, 2022 11.7%
+
+Cross-validated (5-fold x 10)
+  method              AUC  top-30% recall
+  boosted           0.831           76.8%
+  logistic          0.806           76.3%
+  B4 state          0.728           69.0%
+  B2 size           0.709           59.1%
+  B3 vintage        0.547           43.5%
+  B1 technology     0.535           99.0%
+
+Time check: train 2018-21, test 2022+ (802 projects, 94 cancelled)
+  method              AUC  top-30% recall
+  B2 size           0.825           67.0%
+  logistic          0.802           62.8%
+  boosted           0.801           67.0%
+  B4 state          0.640           70.2%
+  B1 technology     0.560          100.0%
+  B3 vintage        0.500          100.0%

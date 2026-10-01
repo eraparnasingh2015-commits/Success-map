@@ -49,3 +49,34 @@ several hundred cancellations, so a real signal would show up if it exists.
 
 If it fails, the "will this project happen" wedge is dropped for power too, at least with
 public announcement-time data.
+
+## Amendment 1 (made after the first run, recorded honestly)
+
+The first run scored AUC 0.99, which was a leak, not a signal. For cancelled power projects CIM
+overwrites `Project_Type` with "Cancelled", so `is_new` encoded the outcome (324 of 328 cancelled
+projects were "not new"). `is_new` is removed from the features and baseline B2 becomes size
+only. Everything else is unchanged. The factory test was checked and does not have this leak
+(cancelled factories keep "New"/"Expansion").
+
+## Result (after amendment 1)
+
+Main sample: 5,521 projects, 328 cancelled (5.9%). Full output: docs/power-cancellation-test-results.txt
+
+| Check | Pass mark | Result |
+|---|---|---|
+| Best model AUC (boosted, cross-validated) | >= 0.70 | 0.798, pass |
+| Beats best baseline (state rate 0.717) | by >= 0.05 | +0.081, pass |
+| Top-30% recall | >= 70% | 76.6%, pass |
+
+**Formally PASS, but the time check undercuts it.** Trained on 2018-21 and tested on 2022-23
+(the way a product would actually be used), size alone scores AUC 0.740 and beats both
+models (logistic 0.683, boosted 0.619). The sensitivity sample shows the same pattern
+(size 0.825 vs models 0.80). So the cross-validated edge comes from mixing years (state and
+local-politics patterns that change over time), and it does not carry forward.
+
+Plain reading: in public data, "bigger projects and battery projects cancel more often" is
+most of what can be said ahead of time, and that is a rule of thumb, not a product. A
+model that cannot beat project size on future projects is not something a buyer would pay
+for. Combined with the factory result and existing paid players (e.g. Enverus), the wedge
+stays dropped unless private, announcement-time data (interconnection-queue position,
+permits, offtake contracts) becomes available.
