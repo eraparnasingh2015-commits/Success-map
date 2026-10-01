@@ -58,3 +58,17 @@ The time check is reported but not part of the pass mark: its test set has too f
   likely to matter (site, permits, customer contracts, finances) aren't in the data yet.
 - **Pass:** worth the effort of adding those warning signs by hand for a sample of projects.
 - Either way, the sample is small (about 60 cancellations), so results are indicative only.
+
+## Result (first run, 2026-10-01)
+Full output: `docs/cancellation-test-results.txt` (from `python3 scripts/cancellation_test.py`).
+
+**FAIL on the pre-registered pass mark**, narrowly. Main sample, boosted trees:
+AUC 0.763 (passes ≥ 0.70), beats the best baseline by +0.061 (passes ≥ 0.05),
+but top-30% recall is 64.2% (fails ≥ 70%).
+
+Notes:
+- Most of the signal comes from project size and new-vs-expansion (baseline B2 alone: AUC 0.70).
+- Without capex (possible leakage) the margin over B2 shrinks to +0.021.
+- The secondary sample (adds industrial projects) scores higher (AUC about 0.79) but was not the pass-mark sample.
+- The B3 vintage "100%" recall in the time check is an artefact: test years never appear in training,
+  so every project gets the same score and ties all count as "top 30%". Ignore it.

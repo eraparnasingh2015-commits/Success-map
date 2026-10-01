@@ -1,0 +1,54 @@
+
+=== main sample: 516 projects, 60 cancelled (11.6%) ===
+
+Cross-validated (with capex)
+  method              AUC  top-30% recall
+  boosted           0.763           64.2%
+  logistic          0.729           57.7%
+  B2 size+new       0.702           57.8%
+  B1 technology     0.527           42.3%
+  B3 vintage        0.495           37.3%
+
+Cross-validated (without capex)
+  method              AUC  top-30% recall
+  boosted           0.723           57.8%
+  B2 size+new       0.702           57.8%
+  logistic          0.682           53.2%
+  B1 technology     0.527           42.3%
+  B3 vintage        0.495           37.3%
+
+Time check: train 2018-22, test 2023-24 (229 projects, 26 cancelled)
+  method              AUC  top-30% recall
+  boosted           0.767           69.2%
+  B2 size+new       0.736           65.4%
+  logistic          0.731           53.8%
+  B1 technology     0.577           65.4%
+  B3 vintage        0.500          100.0%
+
+PASS MARK (boosted): AUC>=0.70 True, beats best baseline by >=0.05 True (+0.061), top-30% recall>=70% False -> FAIL
+
+=== secondary sample: 637 projects, 101 cancelled (15.9%) ===
+
+Cross-validated (with capex)
+  method              AUC  top-30% recall
+  logistic          0.789           64.8%
+  boosted           0.784           68.0%
+  B2 size+new       0.648           54.1%
+  B1 technology     0.621           57.1%
+  B3 vintage        0.574           46.4%
+
+Cross-validated (without capex)
+  method              AUC  top-30% recall
+  boosted           0.736           57.7%
+  logistic          0.710           54.5%
+  B2 size+new       0.648           54.1%
+  B1 technology     0.621           57.1%
+  B3 vintage        0.574           46.4%
+
+Time check: train 2018-22, test 2023-24 (270 projects, 40 cancelled)
+  method              AUC  top-30% recall
+  logistic          0.799           67.5%
+  boosted           0.760           60.0%
+  B1 technology     0.674           52.5%
+  B2 size+new       0.630           57.5%
+  B3 vintage        0.500          100.0%
